@@ -25,24 +25,24 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <AnimatedBackground />
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container mx-auto px-4 py-20 relative z-10 mx-auto max-w-1.5xl align-middle">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-30 items-center">
           {/* Left: Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-6"
+            className="space-y-6 justify-center lg:justify-start text-center lg:text-left mb-10 align-middle"
           >
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-balance"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-balance item-center mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Chathuri Nirosha</span>
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent justify-center">Chathuri Nirosha</span>
             </motion.h1>
 
             <AnimatedRole />
@@ -57,7 +57,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-6 pt-4"
+              className="flex flex-wrap gap-4 pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -94,7 +94,7 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-center items-center"
           >
             <ProfileImage />
           </motion.div>

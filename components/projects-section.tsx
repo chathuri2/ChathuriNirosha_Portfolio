@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react"
+import { ChevronLeft, ChevronRight, ExternalLink, Figma, Github } from "lucide-react"
 import Image from "next/image"
 
 const projects = [
@@ -46,7 +46,7 @@ const projects = [
     title: "Brewed Cafe UI Design",
     description:
       "Simple UI Design for a cafe.",
-    image: "/project6.png",
+    image: "/project8.png",
     tech: ["Figma", "UI/UX Design",],
     liveUrl: "#",
     behanceUrl: "https://www.behance.net/gallery/240111895/Brewed-Cafe-Coffee-shop/modules/1383011031",
