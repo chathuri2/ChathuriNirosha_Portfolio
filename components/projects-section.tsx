@@ -1,9 +1,9 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ExternalLink, Figma, Github } from "lucide-react"
+import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
 
 const projects = [
@@ -12,8 +12,10 @@ const projects = [
     description:
       "A full-stack Real-time emotion detection and voice recognition with virtual companion to support mental well-being",
     image: "/project1.jpg",
-    tech: ["Python", "TensorFlow", "OpenCV","Flask"],
-    liveUrl: "https://www.linkedin.com/posts/chathuri-nirosha-a9155b249_mentalhealthtech-ai-machinelearning-activity-7408207882518896641-eHPe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD178U0BIdjyPCdUbL0SpJAnLx-8wCzdsx8",
+    tech: ["Python", "TensorFlow", "OpenCV", "Flask"],
+    liveUrl:
+      "https://www.linkedin.com/posts/chathuri-nirosha-a9155b249_mentalhealthtech-ai-machinelearning-activity-7408207882518896641-eHPe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD178U0BIdjyPCdUbL0SpJAnLx-8wCzdsx8",
+    liveLabel: "Case Study",
     githubUrl: "https://github.com/chathuri2/Moodmate",
   },
   {
@@ -21,34 +23,27 @@ const projects = [
     description: "Sri Lankan Cricket Squad Selection Using Machine Learning.",
     image: "/project2.png",
     tech: ["Next.js", "Python", "Scikit-learn", "RandomForest", "Flask"],
-    liveUrl: "#",
     githubUrl: "https://github.com/chathuri2/CrickInfo",
   },
   {
     title: "Sri Lankan NIC Decoder Mobile Application",
-    description:
-      "Built a cross-platform mobile UI to decode Sri Lankan NIC details.",
+    description: "Built a cross-platform mobile UI to decode Sri Lankan NIC details.",
     image: "/project3.png",
-    tech: ["Flutter", "Dart",],
-    liveUrl: "#",
+    tech: ["Flutter", "Dart"],
     githubUrl: "https://github.com/chathuri2/find_nicdecode",
   },
-    {
+  {
     title: "The Novel Store",
-    description:
-      "Simple Book Store application built with Flutter and Dart.",
+    description: "Simple Book Store application built with Flutter and Dart.",
     image: "/project6.png",
-    tech: ["Flutter", "Dart",],
-    liveUrl: "#",
+    tech: ["Flutter", "Dart"],
     githubUrl: "https://github.com/chathuri2/The_novel_Store",
   },
   {
     title: "Brewed Cafe UI Design",
-    description:
-      "Simple UI Design for a cafe.",
+    description: "Simple UI Design for a cafe.",
     image: "/project8.png",
-    tech: ["Figma", "UI/UX Design",],
-    liveUrl: "#",
+    tech: ["Figma", "UI/UX Design"],
     behanceUrl: "https://www.behance.net/gallery/240111895/Brewed-Cafe-Coffee-shop/modules/1383011031",
   },
 ]
@@ -58,7 +53,20 @@ export function ProjectsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  const updateScrollButtons = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 10)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
+  }
+
+  useEffect(() => {
+    updateScrollButtons()
+    window.addEventListener("resize", updateScrollButtons)
+    return () => window.removeEventListener("resize", updateScrollButtons)
+  }, [])
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return
@@ -74,12 +82,6 @@ export function ProjectsSection() {
     setTimeout(() => updateScrollButtons(), 300)
   }
 
-  const updateScrollButtons = () => {
-    if (!scrollRef.current) return
-    setCanScrollLeft(scrollRef.current.scrollLeft > 10)
-    setCanScrollRight(scrollRef.current.scrollLeft < scrollRef.current.scrollWidth - scrollRef.current.clientWidth - 10)
-  }
-
   return (
     <section id="projects" ref={ref} className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -91,7 +93,7 @@ export function ProjectsSection() {
         >
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-balance">Featured Projects</h2>
-            <p className="text-muted-foreground text-lg">Some of my recent work that I'm proud of</p>
+            <p className="text-muted-foreground text-lg">Some of my recent work that I&apos;m proud of</p>
           </div>
 
           <div className="relative">
@@ -103,6 +105,7 @@ export function ProjectsSection() {
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}
                 className="rounded-full"
+                aria-label="Scroll projects left"
               >
                 <ChevronLeft className="w-4 h-4" />
               </Button>
@@ -112,6 +115,7 @@ export function ProjectsSection() {
                 onClick={() => scroll("right")}
                 disabled={!canScrollRight}
                 className="rounded-full"
+                aria-label="Scroll projects right"
               >
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -122,7 +126,6 @@ export function ProjectsSection() {
               ref={scrollRef}
               onScroll={updateScrollButtons}
               className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {projects.map((project, idx) => (
                 <motion.div
@@ -141,9 +144,10 @@ export function ProjectsSection() {
                       {/* Project Image */}
                       <div className="relative h-64 overflow-hidden">
                         <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.title}
+                          src={project.image}
+                          alt={`${project.title} project screenshot`}
                           fill
+                          sizes="(max-width: 768px) 100vw, 500px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
@@ -164,19 +168,31 @@ export function ProjectsSection() {
                         </div>
 
                         {/* Links */}
-                        <div className="flex gap-3 pt-2">
-                          <Button variant="outline" size="sm" className="group/btn bg-transparent" asChild>
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
-                              Live Demo
-                            </a>
-                          </Button>
-                          <Button variant="outline" size="sm" className="group/btn bg-transparent" asChild>
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
-                              Code
-                            </a>
-                          </Button>
+                        <div className="flex flex-wrap gap-3 pt-2">
+                          {project.liveUrl && (
+                            <Button variant="outline" size="sm" className="group/btn bg-transparent" asChild>
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
+                                {project.liveLabel ?? "Live Demo"}
+                              </a>
+                            </Button>
+                          )}
+                          {project.behanceUrl && (
+                            <Button variant="outline" size="sm" className="group/btn bg-transparent" asChild>
+                              <a href={project.behanceUrl} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
+                                Behance
+                              </a>
+                            </Button>
+                          )}
+                          {project.githubUrl && (
+                            <Button variant="outline" size="sm" className="group/btn bg-transparent" asChild>
+                              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                                <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                                Code
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>

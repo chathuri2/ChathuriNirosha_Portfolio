@@ -64,7 +64,14 @@ export function ProfileImage() {
         {/* Glassmorphism container */}
         <div className="relative backdrop-blur-md bg-card/30 border border-border/50 rounded-full p-2 shadow-2xl">
           <div className="relative w-74 h-74 md:w-110 md:h-110 rounded-full overflow-hidden">
-            <Image src="/professional-headshot.jpg" alt="Profile" fill className="object-cover" priority />
+            <Image
+              src="/professional-headshot.jpg"
+              alt="Chathuri Nirosha"
+              fill
+              sizes="(max-width: 768px) 296px, 440px"
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 

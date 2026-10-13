@@ -19,13 +19,13 @@ export function AboutSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-balance">About Me</h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            I’m an undergraduate Software Engineering student with a passion for Full Stack Development. Skilled in React, Node.js, MongoDB, and UI/UX design, I enjoy creating responsive and user-friendly web applications.
-            I’m a quick learner who is always eager to explore new technologies and expand my skill set. As a collaborative team player, I enjoy working with others to build impactful solutions that make a difference and I'm a passionate developer with a keen eye for design and a love for creating exceptional digital
-            experiences. With expertise in modern web technologies, I build applications that are not only beautiful but
-            also performant and accessible.
+            I&apos;m an undergraduate Software Engineering student with a passion for Full Stack Development. Skilled in
+            React, Node.js, MongoDB, and UI/UX design, I enjoy creating responsive and user-friendly web applications.
+            I&apos;m a quick learner and collaborative team player, always eager to explore new technologies and build
+            impactful solutions that make a difference.
           </p>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            When I'm not coding, you can find me exploring new technologies, contributing to open source, or sharing
+            When I&apos;m not coding, you can find me exploring new technologies, contributing to open source, or sharing
             knowledge with the developer community.
           </p>
         </motion.div>

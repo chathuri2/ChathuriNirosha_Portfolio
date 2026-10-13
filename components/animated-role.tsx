@@ -19,8 +19,9 @@ export function AnimatedRole() {
   return (
     <div className="h-12 md:h-14 flex items-center">
       <AnimatePresence mode="wait">
-        <motion.h2
+        <motion.p
           key={currentRole}
+          aria-live="polite"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -28,7 +29,7 @@ export function AnimatedRole() {
           className="text-2xl md:text-3xl font-semibold text-primary"
         >
           {roles[currentRole]}
-        </motion.h2>
+        </motion.p>
       </AnimatePresence>
     </div>
   )

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -12,7 +12,7 @@ const skills = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "SQL", "REST APIs", ],
+    items: ["Node.js", "MongoDB", "SQL", "REST APIs"],
   },
   {
     category: "Mobile Development",
@@ -24,7 +24,7 @@ const skills = [
   },
   {
     category: "Tools",
-    items: ["Git", "Figma", "VS Code", "Docker", "CI/CD"],
+    items: ["Git", "VS Code", "Docker", "CI/CD"],
   },
 ]
 
@@ -33,7 +33,20 @@ export function SkillsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  const updateScrollButtons = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 0)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth)
+  }
+
+  useEffect(() => {
+    updateScrollButtons()
+    window.addEventListener("resize", updateScrollButtons)
+    return () => window.removeEventListener("resize", updateScrollButtons)
+  }, [])
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return
@@ -47,12 +60,6 @@ export function SkillsSection() {
     })
 
     setTimeout(() => updateScrollButtons(), 300)
-  }
-
-  const updateScrollButtons = () => {
-    if (!scrollRef.current) return
-    setCanScrollLeft(scrollRef.current.scrollLeft > 0)
-    setCanScrollRight(scrollRef.current.scrollLeft < scrollRef.current.scrollWidth - scrollRef.current.clientWidth)
   }
 
   return (
@@ -78,6 +85,7 @@ export function SkillsSection() {
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}
                 className="rounded-full"
+                aria-label="Scroll skills left"
               >
                 <ChevronLeft className="w-4 h-4" />
               </Button>
@@ -87,6 +95,7 @@ export function SkillsSection() {
                 onClick={() => scroll("right")}
                 disabled={!canScrollRight}
                 className="rounded-full"
+                aria-label="Scroll skills right"
               >
                 <ChevronRight className="w-4 h-4" />
               </Button>
@@ -97,7 +106,6 @@ export function SkillsSection() {
               ref={scrollRef}
               onScroll={updateScrollButtons}
               className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {skills.map((skillGroup, idx) => (
                 <motion.div
