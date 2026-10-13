@@ -25,7 +25,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <AnimatedBackground />
 
-      <div className="container mx-auto px-4 py-20 relative z-10 mx-auto max-w-1.5xl align-middle">
+      <div className="container mx-auto px-6 md:px-10 lg:px-18 py-20 relative z-10 mx-auto max-w-1.5xl align-middle">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-30 items-center">
           {/* Left: Text Content */}
           <motion.div
