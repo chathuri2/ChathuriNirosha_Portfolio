@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  color-scheme: light;
   --background: oklch(0.98 0.005 270);
   --foreground: oklch(0.15 0.01 270);
   --card: oklch(0.99 0.003 270);
@@ -19,7 +20,7 @@
   --accent: oklch(0.65 0.25 290);
   --accent-foreground: oklch(0.99 0.003 270);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.88 0.01 270);
   --input: oklch(0.88 0.01 270);
   --ring: oklch(0.52 0.22 270);
@@ -40,6 +41,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.12 0.01 270);
   --foreground: oklch(0.96 0.005 270);
   --card: oklch(0.15 0.012 270);
@@ -125,6 +127,12 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 

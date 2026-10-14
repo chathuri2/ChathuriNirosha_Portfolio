@@ -25,7 +25,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <AnimatedBackground />
 
-      <div className="container mx-auto px-6 md:px-10 lg:px-18 py-20 relative z-10 mx-auto max-w-1.5xl align-middle">
+      <div className="relative z-10 w-[calc(100%-2rem)] max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-30 items-center">
           {/* Left: Text Content */}
           <motion.div
@@ -41,7 +41,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent justify-center">Chathuri Nirosha</span>
             </motion.h1>
 
