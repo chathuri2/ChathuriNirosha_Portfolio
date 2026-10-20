@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 
-const roles = ["Software Engineer", "Frontend Developer", "UI/UX Designer", "Mobile Application Developer"]
+const roles = ["Software Engineer", "Frontend Developer", "UI/UX Designer", "Tech Enthusiast"]
 
 export function AnimatedRole() {
   const [currentRole, setCurrentRole] = useState(0)

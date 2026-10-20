@@ -51,7 +51,7 @@ export function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-7xl bg-background/70 backdrop-blur-lg border border-border rounded-2xl shadow-lg"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-7xl bg-background/30 backdrop-blur-2xl border border-border/50 ring-1 ring-white/10 rounded-2xl shadow-xl"
     >
       <div className="px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Left: Name in Double Colors */}
