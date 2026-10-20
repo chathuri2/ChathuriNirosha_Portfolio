@@ -22,7 +22,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false)
 
   const handleDownloadCV = () => {
-    const cvUrl = "/cv.pdf"
+    const cvUrl = "/Chathuri_Nirosha_CV.pdf"
     const link = document.createElement("a")
     link.href = cvUrl
     link.download = "Chathuri_Nirosha_CV.pdf"
