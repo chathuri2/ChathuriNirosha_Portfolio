@@ -134,7 +134,7 @@ export function ProjectsSection() {
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.8, delay: idx * 0.2 }}
                   whileHover={{ y: -12, transition: { duration: 0.3 } }}
-                  className="flex-shrink-0 w-full md:w-[500px] snap-center group"
+                  className="flex-shrink-0 w-full md:w-[420px] snap-center group"
                 >
                   <div className="relative h-full backdrop-blur-md bg-card border border-border/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
                     {/* Glow effect on hover */}
@@ -142,20 +142,20 @@ export function ProjectsSection() {
 
                     <div className="relative">
                       {/* Project Image */}
-                      <div className="relative h-64 overflow-hidden">
+                      <div className="relative h-52 overflow-hidden">
                         <Image
                           src={project.image}
                           alt={`${project.title} project screenshot`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 500px"
+                          sizes="(max-width: 768px) 100vw, 420px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                       </div>
 
                       {/* Project Content */}
-                      <div className="p-6 space-y-4">
-                        <h3 className="text-2xl font-semibold text-balance">{project.title}</h3>
+                      <div className="p-5 space-y-3">
+                        <h3 className="text-xl font-semibold text-balance">{project.title}</h3>
                         <p className="text-muted-foreground leading-relaxed">{project.description}</p>
 
                         {/* Tech Stack */}
